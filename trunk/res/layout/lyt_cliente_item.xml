@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginLeft="2dp"
+    android:layout_marginRight="2dp"
+    android:orientation="vertical" >
+
+    <ImageView
+        android:id="@+id/ivFoto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:src="@drawable/ic_launcher"
+        android:paddingRight="5dp" />
+
+    <TextView
+        android:id="@+id/lblApellido"
+        style="@android:style/TextAppearance.Large"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/ivFoto"
+        android:text="Lopez" 
+        android:textSize="14sp"/>
+
+    <TextView
+        android:id="@+id/lblNombre"
+        style="@android:style/TextAppearance.Large"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/lblApellido"
+        android:layout_toRightOf="@id/ivFoto" 
+        android:text="Juan"
+        android:textSize="10sp"/>
+
+    <TextView
+        android:id="@+id/lblCuit"
+        style="@android:style/TextAppearance.Large"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/lblNombre"
+        android:layout_toRightOf="@id/ivFoto"
+        android:text="345676" 
+        android:textSize="10sp"/>
+
+    <TextView
+        android:id="@+id/lblDomicilio"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@id/ivFoto" 
+        android:text="@string/domicilio"/>
+
+    <TextView
+        android:id="@+id/lblDomicilioValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" 
+        android:layout_toRightOf="@id/lblDomicilio"
+        android:layout_alignBottom="@id/lblDomicilio"
+        android:paddingLeft="2dp"
+        android:text="French 485"/>
+    
+    <ToggleButton
+        android:id="@+id/btnEstado"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_below="@id/lblDomicilioValue"
+        android:enabled="false"
+        android:focusable="false"
+        android:textOff="@string/inactivo"
+        android:textOn="@string/activo" />
+
+</RelativeLayout>

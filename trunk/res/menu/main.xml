@@ -1,0 +1,16 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <item
+        android:id="@+id/mnEliminarCliente"
+        android:title="Eliminar">
+    </item>
+    <item
+        android:id="@+id/mnModificarCliente"
+        android:title="Modificar">
+    </item>
+    <item
+        android:id="@+id/mnRegistrarVentaCliente"
+        android:title="Registrar Venta">
+    </item>
+
+</menu>
