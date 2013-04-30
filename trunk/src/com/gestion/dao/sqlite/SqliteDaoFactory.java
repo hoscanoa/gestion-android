@@ -4,6 +4,7 @@ import android.database.sqlite.SQLiteDatabase;
 
 import com.gestion.dao.DaoFactory;
 import com.gestion.dao.IArticuloDao;
+import com.gestion.dao.IClienteDao;
 import com.gestion.dao.IUsuarioDao;
 
 public class SqliteDaoFactory extends DaoFactory {
@@ -67,6 +68,12 @@ public class SqliteDaoFactory extends DaoFactory {
 	@Override
 	public IArticuloDao getArticuloDao() {
 		return new ArticuloSqliteSao();
+	}
+
+	@Override
+	public IClienteDao getClienteDao() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
