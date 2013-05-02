@@ -51,11 +51,11 @@ public class ArticuloAdapter extends ArrayAdapter<Articulo> {
 		// TODO Auto-generated method stub
 		return mArticulos.size();
 	}
-
+    
 	@Override
 	public Articulo getItem(int pos) {
 		// TODO Auto-generated method stub
-		return mArticulos.get(pos);
+	   return mArticulos.get(pos);
 	}
 	public void sort(int criterio) {
 		Collections.sort(mArticulos, new ComparatorArticulo(criterio));
@@ -68,15 +68,16 @@ public class ArticuloAdapter extends ArrayAdapter<Articulo> {
 		LayoutInflater inflater = (LayoutInflater) getContext()
 				.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		View view = inflater.inflate(res, null);
-		
+		TextView lblId = (TextView) view.findViewById(R.id.lblId);
 	    TextView lblCodigo = (TextView) view.findViewById(R.id.lblCodigo);
 		TextView lblProducto = (TextView) view.findViewById(R.id.lblProducto);
 		TextView lblCantidad = (TextView) view.findViewById(R.id.lblCantidad);
 	    TextView lblPrecio = (TextView) view.findViewById(R.id.lblPrecio);
 		TextView lblPrecioValue = (TextView) view.findViewById(R.id.lblPrecioValue);
-		ToggleButton btnEstado = (ToggleButton) view.findViewById(R.id.btnEstado);
+//		ToggleButton btnEstado = (ToggleButton) view.findViewById(R.id.btnEstado);
         
 		Articulo articulo = getItem(pos);
+		lblId.setText(String.valueOf(articulo.getId()));
 	    lblCodigo.setText(articulo.getCodigo());
 		lblProducto.setText(articulo.getNombre());
 		lblCantidad.setText(String.valueOf(articulo.getCantidad()));
