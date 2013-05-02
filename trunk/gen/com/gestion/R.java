@@ -32,45 +32,48 @@ public final class R {
     public static final class id {
         public static final int Ok=0x7f090005;
         public static final int btnCancel=0x7f09000d;
-        public static final int btnEstado=0x7f090022;
+        public static final int btnEstado=0x7f090023;
         public static final int btnOk=0x7f09000c;
         public static final int contrasenia=0x7f090003;
-        public static final int itmNuevo=0x7f090028;
-        public static final int itmOrdenar=0x7f090029;
-        public static final int ivFoto=0x7f09001e;
-        public static final int lblApellido=0x7f09001f;
-        public static final int lblCantidad=0x7f090012;
-        public static final int lblCodigo=0x7f09000e;
-        public static final int lblCuit=0x7f090020;
-        public static final int lblDomicilio=0x7f090017;
-        public static final int lblDomicilioValue=0x7f090021;
-        public static final int lblNombre=0x7f090015;
-        public static final int lblPrecio=0x7f090010;
-        public static final int lblPrecioValue=0x7f090011;
-        public static final int lblProducto=0x7f09000f;
-        public static final int lblProvincia=0x7f09001b;
-        public static final int lblTelefono=0x7f090019;
+        public static final int itmNuevo=0x7f090029;
+        public static final int itmOrdenar=0x7f09002a;
+        public static final int ivFoto=0x7f09001f;
+        public static final int lblApellido=0x7f090020;
+        public static final int lblCantidad=0x7f090013;
+        public static final int lblCodigo=0x7f09000f;
+        public static final int lblCuit=0x7f090021;
+        public static final int lblDomicilio=0x7f090018;
+        public static final int lblDomicilioValue=0x7f090022;
+        public static final int lblId=0x7f09000e;
+        public static final int lblNombre=0x7f090016;
+        public static final int lblPrecio=0x7f090011;
+        public static final int lblPrecioValue=0x7f090012;
+        public static final int lblProducto=0x7f090010;
+        public static final int lblProvincia=0x7f09001c;
+        public static final int lblTelefono=0x7f09001a;
         public static final int lnkToRegistrarse=0x7f090006;
-        public static final int lstArticulos=0x7f090014;
-        public static final int lstCliente=0x7f090024;
-        public static final int mnEliminarCliente=0x7f090025;
-        public static final int mnModificarCliente=0x7f090026;
-        public static final int mnRegistrarVentaCliente=0x7f090027;
+        public static final int lstArticulos=0x7f090015;
+        public static final int lstCliente=0x7f090025;
+        public static final int mnEliminarCliente=0x7f090026;
+        public static final int mnModificarCliente=0x7f090027;
+        public static final int mnRegistrarVentaCliente=0x7f090028;
         public static final int nombre=0x7f090001;
-        public static final int spnLocalidad=0x7f09001d;
-        public static final int spnProvincia=0x7f09001c;
+        public static final int spnLocalidad=0x7f09001e;
+        public static final int spnProvincia=0x7f09001d;
         public static final int titulo=0x7f090000;
-        public static final int txtArticuloFiltro=0x7f090013;
+        public static final int tmEliminar=0x7f09002c;
+        public static final int tmModificar=0x7f09002b;
+        public static final int txtArticuloFiltro=0x7f090014;
         public static final int txtCantidad=0x7f09000b;
         public static final int txtCodigo=0x7f090007;
         public static final int txtDescripcion=0x7f090009;
-        public static final int txtDomicilio=0x7f090018;
-        public static final int txtFiltro=0x7f090023;
-        public static final int txtNombre=0x7f090016;
+        public static final int txtDomicilio=0x7f090019;
+        public static final int txtFiltro=0x7f090024;
+        public static final int txtNombre=0x7f090017;
         public static final int txtNombreArticulo=0x7f090008;
         public static final int txtPass=0x7f090004;
         public static final int txtPrecio=0x7f09000a;
-        public static final int txtTelefono=0x7f09001a;
+        public static final int txtTelefono=0x7f09001b;
         public static final int txtUsuario=0x7f090002;
     }
     public static final class layout {
@@ -86,6 +89,7 @@ public final class R {
     public static final class menu {
         public static final int main=0x7f080000;
         public static final int mn_articulo=0x7f080001;
+        public static final int mn_articulo_item=0x7f080002;
     }
     public static final class string {
         public static final int Localidad=0x7f06000e;

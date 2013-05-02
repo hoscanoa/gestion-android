@@ -32,4 +32,21 @@ public class ArticuloBo {
 			e.printStackTrace();
 		}
 	}
+	public void modificarArticulo(Articulo articulo){
+		try {
+			articuloDao.update(articulo);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	public void eliminarArticulo(Articulo articulo) {
+		try {
+			articuloDao.delete(articulo);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+	}
 }

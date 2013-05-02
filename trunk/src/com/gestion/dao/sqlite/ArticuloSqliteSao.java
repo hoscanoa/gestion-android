@@ -9,6 +9,7 @@ import android.database.sqlite.SQLiteDatabase;
 
 import com.gestion.dao.IArticuloDao;
 import com.gestion.dto.Articulo;
+import com.gestion.dto.Usuario;
 
 public class ArticuloSqliteSao implements IArticuloDao {
 
@@ -46,11 +47,11 @@ public class ArticuloSqliteSao implements IArticuloDao {
 				int indexId = cursor.getColumnIndex("id");
 				int id = cursor.getInt(indexId);
 				articulo.setId(id);
-				
+
 				int indexCodigo = cursor.getColumnIndex("codigo");
 				String codigo = cursor.getString(indexCodigo);
 				articulo.setCodigo(codigo);
-				
+
 				int indexNombre = cursor.getColumnIndex("nombre");
 				String nombre = cursor.getString(indexNombre);
 				articulo.setNombre(nombre);
@@ -69,19 +70,36 @@ public class ArticuloSqliteSao implements IArticuloDao {
 				articulos.add(articulo);
 			} while (cursor.moveToNext());
 		}
+		cursor.close();
 		return articulos;
 	}
 
 	@Override
 	public void update(Articulo entity) throws Exception {
-		// TODO Auto-generated method stub
+		SqliteDaoFactory daoFactory = new SqliteDaoFactory();
+		SQLiteDatabase database = daoFactory.abrir();
+		ContentValues values = new ContentValues();
+		values.put("codigo", entity.getCodigo());
+		values.put("nombre", entity.getNombre());
+		values.put("descripcion", entity.getDescripcion());
+		values.put("precio", entity.getCosto());
+		values.put("cantidad", entity.getCantidad());
+		database.update("Articulos", values, "id = ?",
+				new String[] { String.valueOf(entity.getId()) });
+		
+		database.close();
 
 	}
 
 	@Override
 	public void delete(Articulo entity) throws Exception {
-		// TODO Auto-generated method stub
+		SqliteDaoFactory daoFactory = new SqliteDaoFactory();
+		SQLiteDatabase database = daoFactory.abrir();
 
+		database.delete("Articulos", "id = ?",
+				new String[] { String.valueOf(entity.getId()) });
+
+		database.close();
 	}
 
 }
