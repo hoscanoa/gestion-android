@@ -1,7 +1,6 @@
 package com.gestion.view.cliente;
 
 import java.util.List;
-
 import com.gestion.R;
 import com.gestion.bo.ArticuloAdapter;
 import com.gestion.bo.ClienteAdapter;
@@ -9,11 +8,11 @@ import com.gestion.bo.ClienteBo;
 import com.gestion.dto.Articulo;
 import com.gestion.dto.Cliente;
 import com.gestion.utils.Preferencia;
+import com.gestion.ventas.frmCabeceraVenta;
 import com.gestion.view.articulos.DialogOrdenarArticulos;
 import com.gestion.view.articulos.frmAltaArticulo;
 import com.gestion.view.cliente.DialogOrdenarCliente.ItemListener;
-
-
+import com.gestion.view.principal.Principal;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -115,7 +114,7 @@ public class frmListadoClientes extends FragmentActivity  implements ItemListene
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		MenuInflater inflater = getMenuInflater();
-		inflater.inflate(R.menu.mn_cliente, menu);
+		inflater.inflate(R.menu.mn_cliente,menu);
 		return true;
 	}
 
@@ -192,12 +191,12 @@ public class frmListadoClientes extends FragmentActivity  implements ItemListene
 	        	Toast.makeText(getApplicationContext(), "Modificar Cliente"+ clienteSeleccionado,Toast.LENGTH_SHORT).show();
 	            return true;
 	        case R.id.tmVentas:
-	        	String aux = clienteSeleccionado.getId().toString();
-	        	
-	        	Toast.makeText(getApplicationContext(), "Registrar Venta: " + aux,Toast.LENGTH_SHORT).show();
+	        	Intent intent = new Intent(getBaseContext(),frmCabeceraVenta.class);
+				intent.putExtra("cliente", clienteSeleccionado);
+				startActivity(intent);
+
 	        	return true;
-	        case R.id.mnAltaCliente:
-	        	callActivityAlta();
+	       
 	        default:
 	            return super.onContextItemSelected(item);
 	    }

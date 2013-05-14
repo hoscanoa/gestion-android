@@ -8,7 +8,9 @@ public class Preferencia {
 	private SharedPreferences mPreferences;
 	private Context mContext;
 	private static final String KEY_ORDEN_ARTICULO = "ordenarArticulo";
+
 	private static final String KEY_ORDEN_CLIENTE = "ordenarCliente";
+
 	public static final int ORDENAR_NOMBRE = 0;
 	public static final int ORDENAR_CODIGO = 1;
 	public static final int ORDENAR_APELLIDO = 2;
