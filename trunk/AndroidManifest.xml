@@ -7,7 +7,8 @@
     <uses-sdk
         android:minSdkVersion="7"
         android:targetSdkVersion="17" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -23,10 +24,17 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".view.cliente.frmListadoClientes"></activity>
-        <activity android:name=".view.articulos.frmListadoArticulos"></activity>
-        <activity android:name=".view.cliente.frmAltaCliente"></activity>
-        <activity android:name=".view.articulos.frmAltaArticulo"></activity>
+        <activity android:name=".view.cliente.frmListadoClientes" >
+        </activity>
+        <activity android:name=".view.articulos.frmListadoArticulos" >
+        </activity>
+        <activity android:name=".view.cliente.frmAltaCliente" >
+        </activity>
+        <activity android:name=".view.articulos.frmAltaArticulo" >
+        </activity>
+        <activity android:name=".ventas.frmVentas"></activity>
+        <activity android:name=".view.principal.Principal"></activity>
+        <activity android:name=".ventas.frmCabeceraVenta"></activity>
     </application>
 
 </manifest>
