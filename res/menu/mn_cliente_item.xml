@@ -2,6 +2,6 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android" >
     <item android:id="@+id/tmModificar" android:title="Modificar"></item>
     <item android:id="@+id/tmEliminar" android:title="Eliminar"></item>
-    <item android:id="@+id/tmVentas" android:title="RegistrarVentas"></item>
+    <item android:id="@+id/tmVentas" android:title="Registrar Venta"></item>
 
 </menu>

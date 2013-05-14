@@ -17,6 +17,8 @@
     <string name="telefono">Telefono</string>
     <string name="Localidad">Localidad</string>
     <string name="Provincia">Provincia</string>
-     <string name="Registrarse">Registrarse</string>
+    <string name="Registrarse">Registrarse</string>
+    <string name="modificar">Modificar Producto</string>
+     <string name="Siguiente">Siguiente</string>
 
 </resources>
