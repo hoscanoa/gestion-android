@@ -3,13 +3,21 @@ package com.gestion.view.cliente;
 import java.util.List;
 
 import com.gestion.R;
+import com.gestion.bo.ArticuloAdapter;
 import com.gestion.bo.ClienteAdapter;
 import com.gestion.bo.ClienteBo;
+import com.gestion.dto.Articulo;
 import com.gestion.dto.Cliente;
+import com.gestion.utils.Preferencia;
+import com.gestion.view.articulos.DialogOrdenarArticulos;
+import com.gestion.view.articulos.frmAltaArticulo;
+import com.gestion.view.cliente.DialogOrdenarCliente.ItemListener;
 
-import android.app.Activity;
+
+
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.ContextMenu;
@@ -26,10 +34,14 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
-public class frmListadoClientes extends Activity {
+public class frmListadoClientes extends FragmentActivity  implements ItemListener {
 	private ClienteBo mClienteBo;
 	private ClienteAdapter mAdapter;
-	private static final int Activity_alta_cliente =0;
+	private static final int ACTIVITY_ALTA_CLIENTE =0;
+	private static final int ACTIVITY_MODIFICAR_CLIENTE = 1;
+	public static final int MODO_UPDATE = 99;
+	public static final int MODO_CREATE = 0;
+	private Preferencia mPreferencia;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -42,20 +54,34 @@ public class frmListadoClientes extends Activity {
 		registerForContextMenu(lstClientes);
 
 		mClienteBo = new ClienteBo();
-		List<com.gestion.dto.Cliente> clientes = mClienteBo.retriewClientes();
+		//List<Cliente> clientes = mClienteBo.retriewClientes();
+		List<Cliente> clientes = mClienteBo.getListado();
 		mAdapter = new ClienteAdapter(this,
 				R.layout.lyt_cliente_item, clientes);
+		/*
 		lstClientes.setOnItemClickListener(new OnItemClickListener() {
-
+			// lo que hace es mostrarte el Id.. como?.. el argumento cero es el
+			// contexto, arg2 es integer de la posicio
+			// y lo definis como el objeto que te va a devolver el Id
 			@Override
 			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
 					long arg3) {
-				// TODO Auto-generated method stub
+				String idCliente = ((Cliente) arg0.getItemAtPosition(arg2))
+						.getApellido();
+				Toast.makeText(getApplicationContext(),
+						"este es el id" + idCliente, Toast.LENGTH_LONG).show();
 
 			}
 		});
+		
+		*/
 		lstClientes.setAdapter(mAdapter);
-		EditText txtFiltro = (EditText) findViewById(R.id.txtFiltro);
+		
+		
+		
+		//Filtro de Busqueda
+		
+		EditText txtFiltro = (EditText) findViewById(R.id.txtFiltro);		
 		txtFiltro.addTextChangedListener(new TextWatcher() {
 
 			@Override
@@ -80,10 +106,16 @@ public class frmListadoClientes extends Activity {
 		});
 	}
 
+	
+	
+	// ************* aca arranca lo de menu. *******
+
+	
+	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		MenuInflater inflater = getMenuInflater();
-		inflater.inflate(R.menu.main, menu);
+		inflater.inflate(R.menu.mn_cliente, menu);
 		return true;
 	}
 
@@ -91,16 +123,46 @@ public class frmListadoClientes extends Activity {
 	public boolean onOptionsItemSelected(MenuItem item) {
 
 		switch (item.getItemId()) {
-		case R.id.mnEliminarCliente:
-			Toast.makeText(getApplicationContext(), "Nuevo Cliente",Toast.LENGTH_SHORT).show();
+		case R.id.itmClienteNuevo:
+			callActivityAlta();
+			//Toast.makeText(getApplicationContext(), "Nuevo Cliente",Toast.LENGTH_SHORT).show();
 			return true;
-		case R.id.mnModificarCliente:
-			Toast.makeText(getApplicationContext(), "Modificar", Toast.LENGTH_LONG).show();
+		case R.id.itmOrdenarcliente:
+			DialogOrdenarCliente dialog = new DialogOrdenarCliente();
+			dialog.show(getSupportFragmentManager(), "Ordenar Cliente");
 			return true;
 		default:
 			return super.onOptionsItemSelected(item);
 		}
 
+		
+		}	
+		
+	private void callActivityAlta() {
+		Intent intent1 = new Intent(this, frmAltaCliente.class);
+		intent1.putExtra("modo", MODO_CREATE);
+		startActivityForResult(intent1, ACTIVITY_ALTA_CLIENTE);
+		
+		
+	}
+	
+	
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+			super.onActivityResult(requestCode, resultCode, data);
+			if (requestCode == ACTIVITY_ALTA_CLIENTE && resultCode == RESULT_OK){
+				Cliente cliente = (Cliente) data.getExtras().getSerializable("cliente");
+				mClienteBo.guardarCliente(cliente);
+			mAdapter.add(cliente);
+			}
+			
+			
+			
+	}
+	
+	public void onItemSelected(int position) {
+		mPreferencia.setCriterioOrdenarCliente(position);
+		mAdapter.sort(position);
 	}
 	@Override
 	public void onCreateContextMenu(ContextMenu menu, View v,
@@ -108,32 +170,42 @@ public class frmListadoClientes extends Activity {
 		super.onCreateContextMenu(menu, v, menuInfo);
 		 MenuInflater inflater = getMenuInflater();
 		 menu.setHeaderTitle("Opciones");
-		 inflater.inflate(R.menu.main, menu);
-		
+		 inflater.inflate(R.menu.mn_cliente_item, menu);
+		 super.onCreateContextMenu(menu, v, menuInfo);
 	}
 	
 	@Override
 	public boolean onContextItemSelected(MenuItem item) {
 	    AdapterContextMenuInfo info = (AdapterContextMenuInfo) item.getMenuInfo();
 	    int pos = info.position;
+	    
+	   
+	    
 	    Cliente clienteSeleccionado = mAdapter.getItem(pos);
 	    switch (item.getItemId()) {
-	        case R.id.mnEliminarCliente:
+	        case R.id.tmEliminar:
+	        	mClienteBo.eliminarCliente(clienteSeleccionado);
+				mAdapter.remove(clienteSeleccionado);
 	        	Toast.makeText(getApplicationContext(), "Eliminar Cliente" + clienteSeleccionado,Toast.LENGTH_SHORT).show();
 	            return true;
 	        case R.id.mnModificarCliente:
 	        	Toast.makeText(getApplicationContext(), "Modificar Cliente"+ clienteSeleccionado,Toast.LENGTH_SHORT).show();
 	            return true;
-	        case R.id.mnRegistrarVentaCliente:
-	        	Toast.makeText(getApplicationContext(), "Registrar Venta",Toast.LENGTH_SHORT).show();
+	        case R.id.tmVentas:
+	        	String aux = clienteSeleccionado.getId().toString();
+	        	
+	        	Toast.makeText(getApplicationContext(), "Registrar Venta: " + aux,Toast.LENGTH_SHORT).show();
 	        	return true;
+	        case R.id.mnAltaCliente:
+	        	callActivityAlta();
 	        default:
 	            return super.onContextItemSelected(item);
 	    }
 	}
-	private void callActivityAlta(){
-		Intent intent = new Intent(this,frmAltaCliente.class);
-		//startActivityForResult(intent,);
-	}
-	
+
 }
+
+
+	
+	
+
