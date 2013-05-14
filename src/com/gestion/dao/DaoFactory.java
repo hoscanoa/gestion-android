@@ -34,6 +34,8 @@ public abstract class DaoFactory {
 	
 	public abstract IArticuloDao getArticuloDao();
 	
+	public abstract IVentaDao getVentaDao();
+	
 	public abstract IClienteDao getClienteDao();
 
 }

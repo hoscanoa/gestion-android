@@ -17,9 +17,9 @@ public class UsuarioSqliteDao implements IUsuarioDao {
 		SQLiteDatabase database = daoFactory.abrir();
 		ContentValues values = new ContentValues();
 		values.put("id", entity.getId());
-		values.put("nombre", entity.getNombreusuario());
+		values.put("nombreusuario", entity.getNombreusuario());
 		values.put("clave", entity.getClave());
-		database.insert("usuario", null, values);
+		database.insert("Usuario", null, values);
 
 	}
 
@@ -46,8 +46,8 @@ public class UsuarioSqliteDao implements IUsuarioDao {
 		SqliteDaoFactory daoFactory = new SqliteDaoFactory();
 		SQLiteDatabase database = daoFactory.abrir();
 		ContentValues values = new ContentValues();
-		values.put("nombre", entity.getNombreusuario());
-		values.put("nombre", entity.getClave());
+		values.put("nombreusuario", entity.getNombreusuario());
+		values.put("clave", entity.getClave());
 
 		database.update("usuario", values, "id = ?",
 				new String[] { String.valueOf(entity.getId()) });
@@ -59,7 +59,7 @@ public class UsuarioSqliteDao implements IUsuarioDao {
 		SqliteDaoFactory daoFactory = new SqliteDaoFactory();
 		SQLiteDatabase database = daoFactory.abrir();
 
-		database.delete("usuario", "id = ?",
+		database.delete("usuario", "IdUsuario = ?",
 				new String[] { String.valueOf(entity.getId()) });
 
 	}
@@ -69,13 +69,12 @@ public class UsuarioSqliteDao implements IUsuarioDao {
 		SqliteDaoFactory daoFactory = new SqliteDaoFactory();
 		SQLiteDatabase database = daoFactory.abrir();
 		
-		Cursor cursor = database.query("Usuario", null,"nombre = ? and clave = ?", new String[]{nombreUsuario,clave}, null, null, null);
+		Cursor cursor = database.query("Usuario", null,"nombreusuario = ? and clave = ?", new String[]{nombreUsuario,clave}, null, null, null);
 		if (cursor.moveToFirst()){
-			int indexId = cursor.getColumnIndex("id");
+			int indexId = cursor.getColumnIndex("IdUsuario");
 			Long id = cursor.getLong(indexId);
 			Usuario usuario = new Usuario();
 			usuario.setId(id);
-			
 			return usuario;
 		}else{
 			return null;

@@ -6,6 +6,7 @@ import com.gestion.dao.DaoFactory;
 import com.gestion.dao.IArticuloDao;
 import com.gestion.dao.IClienteDao;
 import com.gestion.dao.IUsuarioDao;
+import com.gestion.dao.IVentaDao;
 
 public class SqliteDaoFactory extends DaoFactory {
 	private SQLiteDatabase database;
@@ -67,13 +68,16 @@ public class SqliteDaoFactory extends DaoFactory {
 
 	@Override
 	public IArticuloDao getArticuloDao() {
-		return new ArticuloSqliteSao();
+		return new ArticuloSqliteDao();
+	}
+	public IClienteDao getClienteDao() {
+		return new ClienteSqliteDao();
 	}
 
 	@Override
-	public IClienteDao getClienteDao() {
+	public IVentaDao getVentaDao() {
 		// TODO Auto-generated method stub
-		return null;
+		return  new VentaSqliteDao();
 	}
 
 }

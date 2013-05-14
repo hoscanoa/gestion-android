@@ -8,10 +8,10 @@ import com.gestion.bo.ArticuloBo;
 import com.gestion.dto.Articulo;
 import com.gestion.utils.Preferencia;
 import com.gestion.view.articulos.DialogOrdenarArticulos.ItemListener;
-import com.gestion.view.cliente.DialogOrdenarCliente.ItemLiestener;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
@@ -36,7 +36,8 @@ public class frmListadoArticulos extends FragmentActivity implements
 	public static final int MODO_UPDATE = 99;
 	public static final int MODO_CREATE = 0;
 	private Preferencia mPreferencia;
-    private ListView lstArticulos;
+	private ListView lstArticulos;
+
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.lyt_articulo_listado);
@@ -82,7 +83,7 @@ public class frmListadoArticulos extends FragmentActivity implements
 		inflater.inflate(R.menu.mn_articulo, menu);
 		return true;
 	}
-	
+
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
 		case R.id.itmNuevo:
@@ -130,7 +131,7 @@ public class frmListadoArticulos extends FragmentActivity implements
 					articulos);
 
 			lstArticulos.setAdapter(mAdapter);
-			
+
 		}
 	}
 
@@ -155,23 +156,39 @@ public class frmListadoArticulos extends FragmentActivity implements
 		AdapterContextMenuInfo info = (AdapterContextMenuInfo) item
 				.getMenuInfo();
 		int pos = info.position;
-		Articulo articulo = mAdapter.getItem(pos);
+		final Articulo articulo = mAdapter.getItem(pos);
 
 		switch (item.getItemId()) {
 		case R.id.tmModificar:
 			callActivityModificar(articulo);
 			return true;
 		case R.id.tmEliminar:
-			mArticuloBo.eliminarArticulo(articulo);
-			mAdapter.remove(articulo);
-			return true;
+			AlertDialog.Builder builder = new AlertDialog.Builder(this);
+			builder.setMessage("¿Esta seguro?")
+					.setPositiveButton("Aceptar",
+							new DialogInterface.OnClickListener() {
+								public void onClick(DialogInterface dialog,
+										int id) {
+									mArticuloBo.eliminarArticulo(articulo);
+									mAdapter.remove(articulo);
+									dialog.dismiss();
 
+								}
+							})
+					.setNegativeButton("Cancelar",
+							new DialogInterface.OnClickListener() {
+								public void onClick(DialogInterface dialog,
+										int id) {
+									dialog.dismiss();
+								}
+							});
+			// Create the AlertDialog object and return it
+			builder.show();
+			return true;
 		default:
 			return super.onContextItemSelected(item);
 		}
 
 	}
-	
-	
 
 }
