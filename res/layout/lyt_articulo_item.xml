@@ -5,25 +5,36 @@
     android:layout_marginLeft="2dp"
     android:layout_marginRight="2dp"
     android:orientation="vertical" >
-    
-   
-     <TextView
+
+    <TextView
         android:id="@+id/lblId"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
+        android:paddingRight="5dp"
         android:textColor="@android:color/darker_gray"
         android:textSize="18sp"
-        android:paddingRight="5dp" 
-        android:visibility="invisible"/>
-     <TextView
-        android:id="@+id/lblCodigo"
+        android:visibility="invisible" />
+
+    <TextView
+        android:id="@+id/lblCodigoEtiqueta"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
+        android:paddingRight="5dp"
+        android:text="Código"
         android:textColor="@android:color/darker_gray"
-        android:textSize="18sp"
-        android:paddingRight="5dp" />
+        android:textSize="15sp" />
+
+    <TextView
+        android:id="@+id/lblCodigo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/lblCodigoEtiqueta"
+        android:paddingRight="5dp"
+        android:text="1589"
+        android:textColor="@android:color/darker_gray"
+        android:textSize="15sp" />
 
     <TextView
         android:id="@+id/lblProducto"
@@ -31,43 +42,35 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/lblCodigo"
-        android:textSize="14sp"/>
+        android:text="Zapatillas"
+        android:textSize="20sp"
+      />
 
-      <TextView
+    <TextView
         android:id="@+id/lblPrecio"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:layout_below="@id/lblProducto" 
-        android:text="Precio"/>
+        android:layout_below="@id/lblProducto"
+        android:text="Precio $" />
 
     <TextView
         android:id="@+id/lblPrecioValue"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" 
-        android:layout_toRightOf="@id/lblPrecio"
+        android:layout_height="wrap_content"
         android:layout_below="@id/lblProducto"
+        android:layout_toRightOf="@id/lblPrecio"
         android:paddingLeft="2dp"
-        />
-    
-      <TextView
+        android:text="45" />
+
+    <TextView
         android:id="@+id/lblCantidad"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" 
-        android:layout_alignParentRight="true"
-        android:layout_marginRight="10dp"
-        android:layout_marginTop="10dp"
-       />
-    
-   <!--  <ToggleButton
-        android:id="@+id/btnEstado"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
-        android:layout_below="@id/lblPrecioValue"
-        android:enabled="false"
-        android:focusable="false"
-        android:textOff="@string/inactivo"
-        android:textOn="@string/activo" /> -->
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
+        android:text="1"
+        android:textSize="18sp" />
 
 </RelativeLayout>
