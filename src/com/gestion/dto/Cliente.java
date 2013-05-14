@@ -1,24 +1,56 @@
 package com.gestion.dto;
 
-public class Cliente {
+import java.io.Serializable;
+
+public class Cliente implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 6488237352678756659L;
 	private Long id;
 	private String nombre;
 	private String apellido;
 	private String email;
-	private String ciut;
-	private String domicilio;
+	private String cuit;
 	private String domicilioValue;
 	private boolean estado;
-	private CondicionIva condicionIva;
-    private Localidad localidad;
-    
-    
+	private String razonSocial;
+	private String telefono;
+
+	public String getRazonSocial() {
+		return razonSocial;
+	}
+
+	public String getTelefono() {
+		return telefono;
+	}
+
+	public void setTelefono(String telefono) {
+		this.telefono = telefono;
+	}
+
+	public void setRazonSocial(String razonSocial) {
+		this.razonSocial = razonSocial;
+	}
+
+	
+	public Localidad getLocalidad() {
+		return localidad;
+	}
+
+	public void setLocalidad(Localidad localidad) {
+		this.localidad = localidad;
+	}
+
+		
+	private Localidad localidad;
+		
 	public Long getId() {
 		return id;
 	}
 
-	public void setId(Long id) {
-		this.id = id;
+	public void setId(int i) {
+		this.id = (long) i;
 	}
 
 	public String getNombre() {
@@ -37,12 +69,12 @@ public class Cliente {
 		this.apellido = apellido;
 	}
 
-	public String getCiut() {
-		return ciut;
+	public String getCuit() {
+		return cuit;
 	}
 
-	public void setCiut(String ciut) {
-		this.ciut = ciut;
+	public void setCuit(String cuit) {
+		this.cuit = cuit;
 	}
 
 	public String getEmail() {
@@ -53,16 +85,8 @@ public class Cliente {
 		this.email = email;
 	}
 
-	public String toString(){
+	public String toString() {
 		return nombre.concat(",").concat(apellido);
-	}
-
-	public String getDomicilio() {
-		return domicilio;
-	}
-
-	public void setDomicilio(String domicilio) {
-		this.domicilio = domicilio;
 	}
 
 	public String getDomicilioValue() {
@@ -80,6 +104,23 @@ public class Cliente {
 	public void setEstado(boolean estado) {
 		this.estado = estado;
 	}
-
-
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + (int) (id ^ (id >>> 32));
+		return result;
+	}
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Cliente other = (Cliente) obj;
+		if (id != other.id)
+			return false;
+		return true;
+	}
 }
