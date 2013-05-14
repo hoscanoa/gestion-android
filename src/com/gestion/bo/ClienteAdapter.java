@@ -1,9 +1,13 @@
 package com.gestion.bo;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import com.gestion.R;
 import com.gestion.dto.Cliente;
+import com.gestion.view.articulos.ComparatorArticulo;
+import com.gestion.view.cliente.ComparatorCliente;
+
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -36,7 +40,10 @@ public class ClienteAdapter extends ArrayAdapter<Cliente> {
 		// TODO Auto-generated method stub
 		return mClientes.size();
 	}
-
+	public void sort(int criterio) {
+		Collections.sort(mClientes, new ComparatorCliente(criterio));
+		notifyDataSetChanged();
+	}
 	@Override
 	public Cliente getItem(int pos) {
 		// TODO Auto-generated method stub
@@ -65,8 +72,8 @@ public class ClienteAdapter extends ArrayAdapter<Cliente> {
 		Cliente cliente = getItem(pos);
 		lblApellido.setText(cliente.getApellido());
 		lblNombre.setText(cliente.getNombre());
-		lblCuit.setText(cliente.getCiut());
-		lblDomicilio.setText(cliente.getDomicilio());
+		lblCuit.setText(cliente.getCuit());
+	//	lblDomicilio.setText(cliente.getDomicilio());
 		btnEstado.setChecked(cliente.isEstado());
 		
 		
