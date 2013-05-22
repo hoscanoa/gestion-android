@@ -24,17 +24,24 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".view.cliente.frmListadoClientes" >
+        <activity android:name="com.gestion.view.cliente.frmListadoClientes" >
         </activity>
-        <activity android:name=".view.articulos.frmListadoArticulos" >
+        <activity android:name="com.gestion.view.articulos.frmListadoArticulos" >
         </activity>
-        <activity android:name=".view.cliente.frmAltaCliente" >
+        <activity android:name="com.gestion.view.cliente.frmAltaCliente" >
         </activity>
-        <activity android:name=".view.articulos.frmAltaArticulo" >
+        <activity android:name="com.gestion.view.articulos.frmAltaArticulo" >
         </activity>
-        <activity android:name=".ventas.frmVentas"></activity>
-        <activity android:name=".view.principal.Principal"></activity>
-        <activity android:name=".ventas.frmCabeceraVenta"></activity>
+        <activity android:name="com.gestion.ventas.frmVentas" >
+        </activity>
+        <activity android:name="com.gestion.view.principal.Principal" >
+        </activity>
+        <activity android:name="com.gestion.ventas.frmCabeceraVenta" >
+        </activity>
+        <activity
+            android:name=".ventas.FrmDetalleVenta"
+            android:label="@string/title_activity_frm_detalle_venta" >
+        </activity>
     </application>
 
 </manifest>
