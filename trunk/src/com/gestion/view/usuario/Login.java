@@ -2,9 +2,12 @@ package com.gestion.view.usuario;
 
 import com.gestion.R;
 import com.gestion.bo.UsuarioBo;
+import com.gestion.ventas.FrmDetalleVenta;
 import com.gestion.view.articulos.frmListadoArticulos;
 import com.gestion.view.cliente.frmAltaCliente;
 import com.gestion.view.cliente.frmListadoClientes;
+import com.gestion.view.principal.Principal;
+
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
@@ -65,7 +68,8 @@ public class Login extends Activity {
 					Toast.makeText(getBaseContext(), R.string.msgErrorLogin,
 							Toast.LENGTH_SHORT).show();
 				} else {
-					Intent intent = new Intent(getBaseContext(),frmListadoArticulos.class);
+					Intent intent = new Intent(getBaseContext(), Principal.class);
+				intent.putExtra("usuario", usuario);
 					startActivity(intent);
 				}
 
