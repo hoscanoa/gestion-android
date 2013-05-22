@@ -19,6 +19,7 @@
     <string name="Provincia">Provincia</string>
     <string name="Registrarse">Registrarse</string>
     <string name="modificar">Modificar Producto</string>
-     <string name="Siguiente">Siguiente</string>
+    <string name="Siguiente">Siguiente</string>
+    <string name="title_activity_frm_detalle_venta">FrmDetalleVenta</string>
 
 </resources>
