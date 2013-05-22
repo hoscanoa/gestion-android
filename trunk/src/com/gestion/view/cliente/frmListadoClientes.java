@@ -8,6 +8,7 @@ import com.gestion.bo.ClienteBo;
 import com.gestion.dto.Articulo;
 import com.gestion.dto.Cliente;
 import com.gestion.utils.Preferencia;
+import com.gestion.ventas.FrmDetalleVenta;
 import com.gestion.ventas.frmCabeceraVenta;
 import com.gestion.view.articulos.DialogOrdenarArticulos;
 import com.gestion.view.articulos.frmAltaArticulo;
@@ -25,10 +26,13 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ContextMenu.ContextMenuInfo;
+import android.view.View.OnClickListener;
+import android.webkit.WebView.FindListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.AdapterContextMenuInfo;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -41,6 +45,7 @@ public class frmListadoClientes extends FragmentActivity  implements ItemListene
 	public static final int MODO_UPDATE = 99;
 	public static final int MODO_CREATE = 0;
 	private Preferencia mPreferencia;
+
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -72,9 +77,21 @@ public class frmListadoClientes extends FragmentActivity  implements ItemListene
 
 			}
 		});
-		
 		*/
+		
 		lstClientes.setAdapter(mAdapter);
+		Button botooon = (Button) findViewById(R.id.HOLA);
+		botooon.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				Intent intent = new Intent(getBaseContext(), FrmDetalleVenta.class);
+				//	intent.putExtra("cliente", clienteSeleccionado);
+					startActivity(intent);
+
+				
+			}
+		});
 		
 		
 		
@@ -191,8 +208,8 @@ public class frmListadoClientes extends FragmentActivity  implements ItemListene
 	        	Toast.makeText(getApplicationContext(), "Modificar Cliente"+ clienteSeleccionado,Toast.LENGTH_SHORT).show();
 	            return true;
 	        case R.id.tmVentas:
-	        	Intent intent = new Intent(getBaseContext(),frmCabeceraVenta.class);
-				intent.putExtra("cliente", clienteSeleccionado);
+	        	Intent intent = new Intent(getBaseContext(),FrmDetalleVenta.class);
+			//	intent.putExtra("cliente", clienteSeleccionado);
 				startActivity(intent);
 
 	        	return true;
