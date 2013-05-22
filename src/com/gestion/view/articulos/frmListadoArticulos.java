@@ -7,10 +7,12 @@ import com.gestion.bo.ArticuloAdapter;
 import com.gestion.bo.ArticuloBo;
 import com.gestion.dto.Articulo;
 import com.gestion.utils.Preferencia;
+import com.gestion.ventas.FrmDetalleVenta;
 import com.gestion.view.articulos.DialogOrdenarArticulos.ItemListener;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -23,12 +25,15 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ContextMenu.ContextMenuInfo;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.EditText;
+import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 import android.widget.AdapterView.AdapterContextMenuInfo;
 
-public class frmListadoArticulos extends FragmentActivity implements
-		ItemListener {
+public class frmListadoArticulos extends FragmentActivity implements ItemListener {
 	private ArticuloBo mArticuloBo;
 	private ArticuloAdapter mAdapter;
 	private static final int ACTIVITY_ALTA_ARTICULO = 0;
@@ -37,10 +42,23 @@ public class frmListadoArticulos extends FragmentActivity implements
 	public static final int MODO_CREATE = 0;
 	private Preferencia mPreferencia;
 	private ListView lstArticulos;
+	private int modo;
+	final Context context = this;
+	private String auxCantidad;
+	public int auxIdArticulo;
+	
 
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		
+		
+			// para el setOnPut busca aca el modo viste..
+		
+	//	Bundle b = getIntent().getExtras();
+//	modo = (Integer) b.getSerializable("modo");
 		setContentView(R.layout.lyt_articulo_listado);
+		
+			// ***************************************
 
 		lstArticulos = (ListView) findViewById(R.id.lstArticulos);
 		lstArticulos.setTextFilterEnabled(true);
@@ -53,6 +71,22 @@ public class frmListadoArticulos extends FragmentActivity implements
 
 		lstArticulos.setAdapter(mAdapter);
 		EditText txtFiltro = (EditText) findViewById(R.id.txtArticuloFiltro);
+		
+		
+		//registerForContextMenu(lstArticulos);
+		lstArticulos.setOnItemClickListener(new OnItemClickListener() {
+			// lo que hace es mostrarte el Id.. como?.. el argumento cero es el
+			// contexto, arg2 es integer de la posicio
+			// y lo definis como el objeto que te va a devolver el Id
+			@Override
+			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
+					long arg3) {
+				int idArticulo = ((Articulo) arg0.getItemAtPosition(arg2)).getId();
+				Toast.makeText(getApplicationContext(),
+						"este es el id" + idArticulo, Toast.LENGTH_LONG).show();
+       auxIdArticulo = idArticulo;
+			}
+		});
 		txtFiltro.addTextChangedListener(new TextWatcher() {
 
 			@Override
@@ -111,6 +145,8 @@ public class frmListadoArticulos extends FragmentActivity implements
 		intent.putExtra("articulo", articuloSeleccionado);
 		startActivityForResult(intent, ACTIVITY_MODIFICAR_ARTICULO);
 	}
+	
+	
 
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -153,6 +189,7 @@ public class frmListadoArticulos extends FragmentActivity implements
 
 	@Override
 	public boolean onContextItemSelected(MenuItem item) {
+		final Intent intent = new Intent(this, FrmDetalleVenta.class);
 		AdapterContextMenuInfo info = (AdapterContextMenuInfo) item
 				.getMenuInfo();
 		int pos = info.position;
@@ -185,6 +222,45 @@ public class frmListadoArticulos extends FragmentActivity implements
 			// Create the AlertDialog object and return it
 			builder.show();
 			return true;
+		case R.id.tmAgregarCompra:
+			AlertDialog.Builder alert = new AlertDialog.Builder(context);
+            alert.setTitle("Ingrese La cantidad que desea Comprar"); //Set Alert dialog title here
+            alert.setMessage("Cantidad"); //Message here
+ 
+            // Set an EditText view to get user input 
+            final EditText input = new EditText(context);
+            alert.setView(input);
+ 
+            alert.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int whichButton) {
+             //You will get as string input data in this variable.
+             // here we convert the input to a string and show in a toast.
+             String srt = input.getEditableText().toString();
+             Toast.makeText(context,srt + auxIdArticulo,Toast.LENGTH_LONG).show(); 
+             auxCantidad = srt;
+             intent.putExtra("idProducto", auxIdArticulo);
+             intent.putExtra("Cantidad", auxCantidad);
+     		 setResult(RESULT_OK, intent);
+            
+     		 
+            } // End of onClick(DialogInterface dialog, int whichButton)
+            });
+            
+            //End of alert.setPositiveButton
+                alert.setNegativeButton("CANCEL", new DialogInterface.OnClickListener() {
+                  public void onClick(DialogInterface dialog, int whichButton) {
+                    // Canceled.
+                      dialog.cancel();
+                  }
+            }); 
+                
+                //End of alert.setNegativeButton
+                AlertDialog alertDialog = alert.create();
+                alertDialog.show();
+                
+                
+                return true;
+			
 		default:
 			return super.onContextItemSelected(item);
 		}

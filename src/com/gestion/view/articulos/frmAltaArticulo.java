@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+
 public class frmAltaArticulo extends Activity {
 	private EditText txtNombre;
 	private EditText txtCodigo;
@@ -22,6 +23,7 @@ public class frmAltaArticulo extends Activity {
 	private int modo;
 	private Articulo articuloNuevo;
 	private Articulo articuloModificar;
+	
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
