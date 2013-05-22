@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/LinearLayout1"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    
+    tools:context=".FrmDetalleVenta" >
+    
+     <RelativeLayout
+        android:id="@+id/titulo"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="@android:color/darker_gray" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Descripcion Venta"
+            android:layout_margin="15dp"
+            android:textStyle="bold" 
+            android:textSize="25sp"
+            android:textColor="@android:color/white"
+            android:layout_centerHorizontal="true"/>
+    </RelativeLayout>
+
+     
+     <RelativeLayout
+        android:id="@+id/titulo"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+       >
+        
+        <Button  
+            android:id="@+id/btn_agregar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:text="Agregar Producto"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+           
+            android:layout_margin="15dp"
+            android:textStyle="bold" 
+            android:textSize="11sp"
+            
+            android:layout_toLeftOf="@id/btn_agregar"
+            android:text="Presione para agregar un producto a la list"/>
+        
+    </RelativeLayout>
+    <ListView 
+         android:id="@+id/lst_Detalle_Productos"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+        
+    </ListView>
+     
+</LinearLayout>
