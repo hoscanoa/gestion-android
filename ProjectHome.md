@@ -1,0 +1,1 @@
+aplicacion sobre preventa desarrollada en el curso de Andorid
